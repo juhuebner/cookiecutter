@@ -73,6 +73,8 @@ def cookiecutter(
         directory=directory,
     )
 
+    logger.debug('repo_dir is %s', os.path.abspath(repo_dir))
+
     template_name = os.path.basename(os.path.abspath(repo_dir))
 
     if replay:

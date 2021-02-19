@@ -5,6 +5,7 @@ import logging
 import os
 import shutil
 from collections import OrderedDict
+from re import escape
 
 from binaryornot.check import is_binary
 from jinja2 import FileSystemLoader
@@ -272,6 +273,9 @@ def generate_files(
     template_dir = find_template(repo_dir)
     logger.debug('Generating project from %s...', template_dir)
     context = context or OrderedDict([])
+
+    # include repo dir in the context dict; this is needed in hooks
+    context['cookiecutter']['_repo_dir'] = escape(os.path.abspath(repo_dir))
 
     envvars = context.get('cookiecutter', {}).get('_jinja2_env_vars', {})
 
