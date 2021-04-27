@@ -12,7 +12,7 @@ from cookiecutter.prompt import read_user_yes_no
 logger = logging.getLogger(__name__)
 
 
-def force_delete(func, path, exc_info):  # pragma: no cover
+def force_delete(func, path, exc_info):
     """Error handler for `shutil.rmtree()` equivalent to `rm -rf`.
 
     Coverage is exluded since not all code is reached in all OSs due to
@@ -100,9 +100,7 @@ def prompt_and_delete(path, no_input=False):
             os.remove(path)
         return True
     else:
-        ok_to_reuse = read_user_yes_no(
-            "Do you want to re-use the existing version?", 'yes'
-        )
+        ok_to_reuse = read_user_yes_no("Do you want to re-use the existing version?", 'yes')
 
         if ok_to_reuse:
             return False
